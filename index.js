@@ -5,6 +5,9 @@ import { v2 as cloudinary } from "cloudinary";
 dotenv.config();
 import cors from "cors";
 import fileUpload from "express-fileupload";
+import { authRouter } from "./router/authRouter.js";
+// this are the routes
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -22,9 +25,13 @@ app.use(
 app.use(express.json());
 app.use(cors());
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+
+// routes
+app.use("/api/v1/auth", authRouter);
 
 const connectDB = async () => {
   try {
