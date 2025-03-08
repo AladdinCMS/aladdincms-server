@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new Schema(
   {
-    fullname: {
+    fullName: {
       type: String,
       required: [true, "Fullname is required."],
     },
