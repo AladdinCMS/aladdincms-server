@@ -5,7 +5,7 @@ import {
   createProgramme,
   updateProgramme,
   deleteProgramme 
-} from "../controllers/programmeController.js";
+} from "../controller/programmeController.js";
 
 const router = Router();
 

@@ -1,15 +1,18 @@
 // routes/documentRouter.js
 import { Router } from "express";
-import { 
+import {
   getAllDocuments,
   createDocument,
   updateDocumentTags,
-  deleteDocument 
-} from "../controllers/documentController.js";
+  downloadDocument,
+  deleteDocument,
+} from "../controller/documentController.js";
 
 const router = Router();
 
 router.get("/", getAllDocuments);
+// In your documentRouter.js
+router.get("/:id/download", downloadDocument);
 router.post("/", createDocument);
 router.patch("/:id/tags", updateDocumentTags);
 router.delete("/:id", deleteDocument);
