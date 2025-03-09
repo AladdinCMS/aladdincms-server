@@ -1,14 +1,24 @@
 import { Router } from "express";
-import { login, signUp } from "../controller/adminController.js";
+import { 
+  login, 
+  getAllAdmins, 
+  getAdminById,
+  createAdmin,
+  updateAdmin, 
+  deleteAdmin 
+} from "../controller/adminController.js";
+import { verifyToken, isSuperAdmin } from "../middleware/auth.js";
 
 const router = Router();
 
-router.post("/signUp", signUp);
+// Authentication routes
 router.post("/signIn", login);
-// router.get("/get-all-users", getAllUsers);
-// router.get("/get-a-user/:id", getAllUsers);
-// router.patch("/update-a-user/:id", updateUser);
-// router.delete("/delete-a-user/:id", deleteUser);
+
+// Admin management routes (protected)
+router.get("/get-all-admins", verifyToken, getAllAdmins);
+router.get("/get-admin/:id", verifyToken, getAdminById);
+router.post("/create-admin", verifyToken, isSuperAdmin, createAdmin);
+router.patch("/update-admin/:id", verifyToken, updateAdmin);
+router.delete("/delete-admin/:id", verifyToken, isSuperAdmin, deleteAdmin);
 
 export const adminRouter = router;
-  
