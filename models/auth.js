@@ -2,9 +2,14 @@ import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new Schema(
   {
-    fullName: {
+    firstName: {
       type: String,
-      required: [true, "Fullname is required."],
+      required: [true, "FirstName is required."],
+    },
+
+    lastName: {
+      type: String,
+      required: [true, "LastName is required."],
     },
 
     email: {
@@ -13,18 +18,41 @@ const UserSchema = new Schema(
       unique: [true, "Email already exists."],
     },
 
-    password: {
-      type: String,
-      required: [true, "Password is required."],
-    },
-
     role: {
       type: String,
-      default: "volunteer",
       enum: ["volunteer", "participant", "admin"],
       required: [true, "Please select a role."],
     },
+
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+      required: [true, "Please select a gender."],
+    },
+
+    // this is for the contact info
+
+    phoneNumber: {
+      type: String,
+      required: [true, "Phone number is required."],
+    },
+
+    address: {
+      type: String,
+      required: [true, "Address is required."],
+    },
+
+    emergencyContactName: {
+      type: String,
+      required: [true, "Emergency contact name is required."],
+    },
+
+    emergencyContactNumber: {
+      type: String,
+      required: [true, "Emergency contact number is required."],
+    },
   },
+
   {
     timestamps: true,
   }
