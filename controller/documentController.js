@@ -90,7 +90,7 @@ export const downloadDocument = async (req, res) => {
       });
       
       console.log("Cloudinary result:", result);
-      fs.unlinkSync(req.files.image.tempFilePath);
+      fs.unlinkSync(req.files.file.tempFilePath);
       
       const newDocument = new Document({
         name: name || fileName,
