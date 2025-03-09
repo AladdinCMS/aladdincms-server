@@ -2,6 +2,7 @@
 import { Document } from "../models/document.js";
 import { v2 as cloudinary } from "cloudinary";
 import fetch from 'node-fetch';
+import fs from 'fs';
 
 const getResourceType = (filename) => {
     const extension = filename.split('.').pop().toLowerCase();
@@ -89,6 +90,7 @@ export const downloadDocument = async (req, res) => {
       });
       
       console.log("Cloudinary result:", result);
+      fs.unlinkSync(req.files.image.tempFilePath);
       
       const newDocument = new Document({
         name: name || fileName,

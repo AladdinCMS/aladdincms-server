@@ -1,7 +1,7 @@
 // controllers/newsController.js
 import { News } from "../models/news.js";
 import { v2 as cloudinary } from "cloudinary";
-
+import fs from "fs"
 // Get all news
 export const getAllNews = async (req, res) => {
   try {
@@ -29,6 +29,8 @@ export const createNews = async (req, res) => {
       );
       imageUrl = result.secure_url;
     }
+
+    fs.unlinkSync(req.files.image.tempFilePath);
 
     const newNews = new News({
       title,
