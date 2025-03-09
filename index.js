@@ -13,6 +13,7 @@ import { donationRouter } from "./router/donationRouter.js";
 import { programmeRouter } from "./router/programmeRouter.js";
 import { newsRouter } from "./router/newsRouter.js";
 import { documentRouter } from "./router/documentRouter.js";
+import { adminRouter } from "./router/adminRouter.js";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 
 // Use routes
 app.use("/api/v1/auth", authRouter); // Keep existing auth router
+app.use("/api/v1/auth/admin", adminRouter); // Keep existing auth router
 // app.use("/api/v1/volunteers", volunteerRouter);
 app.use("/api/v1/donations", donationRouter);
 app.use("/api/v1/programmes", programmeRouter);
