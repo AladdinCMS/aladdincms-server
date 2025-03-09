@@ -6,10 +6,7 @@ import { Admin } from "../models/admin.js";
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    
-    // Log what we're searching for
-    console.log("Attempting login with email:", email);
-    
+     
     const user = await Admin.findOne({ email });
     
     // Check if user exists
@@ -18,16 +15,7 @@ export const login = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
     
-    console.log("Found user:", {
-      email: user.email,
-      role: user.role,
-      // Don't log the actual password!
-      hasPassword: !!user.password
-    });
-    
     const isMatch = await bcrypt.compare(password, user.password);
-    
-    console.log("Password match result:", isMatch);
     
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
